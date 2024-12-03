@@ -5,8 +5,8 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 
 export const metadata = {
-  title: "Your App Name",
-  description: "Your app description",
+  title: "Banime",
+  description: "Watch anime for free",
 };
 
 export default function Layout({ children }: { children: React.ReactNode }) {

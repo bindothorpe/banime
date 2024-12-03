@@ -1,7 +1,8 @@
-export interface SearchResponse {
-  success: boolean;
-  data: SearchData;
-}
+import { Episodes, MostPopularAnime } from './anime-shared';
+import {Response} from './response';
+
+export interface SearchResponse extends Response<SearchData> {}
+
 export interface SearchData {
   animes: Anime[];
   mostPopularAnimes: MostPopularAnime[];
@@ -21,16 +22,5 @@ export interface Anime {
   rating: string;
   episodes: Episodes;
 }
-export interface Episodes {
-  sub: number;
-  dub: number | null;
-}
-export interface MostPopularAnime {
-  id: string;
-  name: string;
-  jname: string;
-  poster: string;
-  episodes: Episodes;
-  type: string;
-}
+
 export interface SearchFilters {}
