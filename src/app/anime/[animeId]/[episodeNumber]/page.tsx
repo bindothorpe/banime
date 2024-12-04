@@ -6,6 +6,16 @@ import { Episode, EpisodesResponse } from "@/types/episode-response";
 import { ServerResponse } from "@/types/server-response";
 import { SourceResponse } from "@/types/source-response";
 import VideoPlayer from "@/components/player/video-player";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
+import Image from "next/image";
+import ShowMoreText from "@/components/show-more-text";
 
 interface AnimeEpisodeProps {
   params: {
@@ -48,29 +58,47 @@ export default async function AnimeEpisodePage({ params }: AnimeEpisodeProps) {
 
   return (
     <div className="container mx-auto px-4 space-y-6">
-      <div className="text-sm text-gray-400 mt-4">
-        <span>{animeResponse.data.anime.info.name}</span>
-        {" > "}
-        <span>Episode {currentEpisode.number}</span>
-      </div>
+      <Breadcrumb>
+        <BreadcrumbList>
+          <BreadcrumbItem>
+            <BreadcrumbLink href={`/anime/${animeResponse.data.anime.info.id}`}>
+              {animeResponse.data.anime.info.name}
+            </BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <BreadcrumbPage>Episode {currentEpisode.number}</BreadcrumbPage>
+          </BreadcrumbItem>
+        </BreadcrumbList>
+      </Breadcrumb>
 
-      <div className="aspect-video w-full bg-gray-900 rounded-lg overflow-hidden">
+      <div className="aspect-video w-full rounded-lg overflow-hidden">
         <VideoPlayer
           option={{ url: sourceResponse.data.sources[0].url }}
           className="w-full h-full"
         />
       </div>
 
-      <Card className="bg-gray-900 border-none">
-        <CardContent className="p-6">
+      <div className="grid grid-cols-4 gap-4">
+        <div className="hidden md:block relative aspect-[3/4] w-full mb-8">
+          <Image
+            src={animeResponse.data.anime.info.poster}
+            alt={animeResponse.data.anime.info.name}
+            fill
+            className="rounded-lg object-cover"
+            sizes="(min-width: 768px) 33vw, 100vw"
+            priority
+          />
+        </div>
+        <div className="col-span-4 md:col-span-3 h-fit">
           <h2 className="text-2xl font-bold mb-4">
             {animeResponse.data.anime.info.name}
           </h2>
           <p className="text-gray-400">
-            {animeResponse.data.anime.info.description}
+            <ShowMoreText text={animeResponse.data.anime.info.description} />
           </p>
-        </CardContent>
-      </Card>
+        </div>
+      </div>
 
       <section>
         <h3 className="text-xl font-bold mb-4">Episodes</h3>
