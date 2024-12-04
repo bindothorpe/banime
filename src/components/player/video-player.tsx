@@ -34,15 +34,12 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
     const art = new Artplayer({
       container: containerRef.current,
       url: "",
-      autoMini: true,
-      screenshot: true,
       setting: true,
       loop: false,
       flip: true,
       playbackRate: true,
       aspectRatio: true,
       fullscreen: true,
-      fullscreenWeb: true,
       subtitleOffset: true,
       miniProgressBar: true,
       mutex: true,
@@ -50,7 +47,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
       playsInline: true,
       autoPlayback: true,
       airplay: true,
-      theme: "#23ade5",
+      theme: "#FAFAFA",
       plugins: [
         artplayerPluginHlsControl({
           quality: {

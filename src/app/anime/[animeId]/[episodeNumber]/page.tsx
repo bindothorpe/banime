@@ -4,7 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { AnimeInfoResponse } from "@/types/anime-info-response";
 import { Episode, EpisodesResponse } from "@/types/episode-response";
 import { ServerResponse } from "@/types/server-response";
-import { SourceResponse } from "@/types/source-response";
+import { SourceResponse, Track } from "@/types/source-response";
 import VideoPlayer from "@/components/player/video-player";
 import {
   Breadcrumb,
@@ -56,6 +56,8 @@ export default async function AnimeEpisodePage({ params }: AnimeEpisodeProps) {
     return <ErrorMessage message="No source available" />;
   }
 
+  console.log(sourceResponse.data);
+
   return (
     <div className="container mx-auto px-4 space-y-6">
       <Breadcrumb>
@@ -74,7 +76,23 @@ export default async function AnimeEpisodePage({ params }: AnimeEpisodeProps) {
 
       <div className="aspect-video w-full rounded-lg overflow-hidden">
         <VideoPlayer
-          option={{ url: sourceResponse.data.sources[0].url }}
+          option={{
+            url: sourceResponse.data.sources[0].url,
+            subtitle: {
+              url: sourceResponse.data.tracks.find(
+                (track: Track) => track.default == true
+              )?.file,
+              type: "vtt",
+              encoding: "utf-8",
+              escape: true,
+              style: {
+                color: "#FFFFFF",
+                fontSize: "24px",
+              },
+            },
+            subtitleOffset: true,
+            setting: true,
+          }}
           className="w-full h-full"
         />
       </div>
