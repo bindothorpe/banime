@@ -56,6 +56,7 @@ export default async function AnimeEpisodePage(props: {
   if (!sourceResponse.success || !sourceResponse.data.sources[0]) {
     return <ErrorMessage message="No source available" />;
   }
+
   return (
     <div className="container mx-auto px-4 space-y-6">
       <Breadcrumb>
@@ -91,6 +92,7 @@ export default async function AnimeEpisodePage(props: {
             subtitleOffset: true,
             setting: true,
           }}
+          sourceData={sourceResponse.data}
           className="w-full h-full"
         />
       </div>

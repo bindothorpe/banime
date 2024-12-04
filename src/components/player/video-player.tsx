@@ -4,10 +4,13 @@ import React, { useEffect, useRef } from "react";
 import Artplayer from "artplayer";
 import Hls from "hls.js";
 import artplayerPluginHlsControl from "artplayer-plugin-hls-control";
+import artplayerPluginChapter from "artplayer-plugin-chapter";
 import type { Option as ArtPlayerOption } from "artplayer/types/option";
+import { SourceData } from "@/types/source-response";
 
 interface VideoPlayerProps {
   option: Partial<ArtPlayerOption>;
+  sourceData?: SourceData;
   getInstance?: (art: Artplayer) => void;
   className?: string;
 }
@@ -22,6 +25,7 @@ interface Track {
 
 const VideoPlayer: React.FC<VideoPlayerProps> = ({
   option,
+  sourceData,
   getInstance,
   className,
 }) => {
@@ -31,17 +35,42 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
   useEffect(() => {
     if (!containerRef.current) return;
 
+    // Create chapters based on sourceData
+    const chapters = [];
+    if (
+      sourceData?.intro &&
+      !(sourceData.intro.start === 0 && sourceData.intro.end === 0)
+    ) {
+      chapters.push({
+        start: sourceData.intro.start,
+        end: sourceData.intro.end,
+        title: "Intro",
+      });
+    }
+    if (
+      sourceData?.outro &&
+      !(sourceData.outro.start === 0 && sourceData.outro.end === 0)
+    ) {
+      chapters.push({
+        start: sourceData.outro.start,
+        end: sourceData.outro.end,
+        title: "Outro",
+      });
+    }
+
+    // Create the chapters plugin
+    const chapterPlugin = artplayerPluginChapter({
+      chapters,
+    });
+
     const art = new Artplayer({
       container: containerRef.current,
       url: "",
       setting: true,
       loop: false,
-      flip: true,
       playbackRate: true,
-      aspectRatio: true,
       fullscreen: true,
       subtitleOffset: true,
-      miniProgressBar: true,
       mutex: true,
       backdrop: true,
       playsInline: true,
@@ -51,7 +80,6 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
       plugins: [
         artplayerPluginHlsControl({
           quality: {
-            control: true,
             setting: true,
             getName: (level: Level) => level.height + "P",
             title: "Quality",
@@ -65,6 +93,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
             auto: "Auto",
           },
         }),
+        ...(chapters.length > 0 ? [chapterPlugin] : []),
       ],
       customType: {
         m3u8: function playM3u8(
@@ -98,7 +127,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
         artRef.current = undefined;
       }
     };
-  }, [option, getInstance]);
+  }, [option, getInstance, sourceData]);
 
   return <div ref={containerRef} className={className} />;
 };
