@@ -1,8 +1,6 @@
 import "@/app/globals.css";
-
-import { AppSidebar } from "@/components/app-sidebar";
+import NavigationBar from "@/components/navigation-bar";
 import { ThemeProvider } from "@/components/theme-provider";
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 
 export const metadata = {
   title: "Banime",
@@ -19,10 +17,11 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           enableSystem
           disableTransitionOnChange
         >
-          <SidebarProvider>
-            <AppSidebar />
-            <main className="flex min-h-screen flex-col">{children}</main>
-          </SidebarProvider>
+          <div className="flex flex-col min-h-screen">
+            <NavigationBar />
+            {/* Main content */}
+            <main className="flex-1 mt-4">{children}</main>
+          </div>
         </ThemeProvider>
       </body>
     </html>
