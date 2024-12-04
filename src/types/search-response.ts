@@ -1,13 +1,15 @@
 import { Episodes, MostPopularAnime } from './anime-shared';
 import {Response} from './response';
 
-export interface SearchResponse extends Response<SearchData> {}
+export interface SearchResponse extends Response {
+  data: SearchData;
+}
 
 export interface SearchData {
   animes: Anime[];
   mostPopularAnimes: MostPopularAnime[];
   searchQuery: string;
-  searchFilters: SearchFilters;
+  // searchFilters: SearchFilters;
   totalPages: number;
   hasNextPage: boolean;
   currentPage: number;
@@ -23,4 +25,4 @@ export interface Anime {
   episodes: Episodes;
 }
 
-export interface SearchFilters {}
+// export interface SearchFilters {}

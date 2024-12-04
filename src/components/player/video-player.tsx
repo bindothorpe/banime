@@ -77,7 +77,6 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
             const hls = new Hls();
             hls.loadSource(url);
             hls.attachMedia(video);
-            // @ts-ignore - Adding hls property to art instance
             art.hls = hls;
             art.on("destroy", () => hls.destroy());
           } else if (video.canPlayType("application/vnd.apple.mpegurl")) {

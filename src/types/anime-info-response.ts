@@ -1,7 +1,9 @@
 import { Episodes, MostPopularAnime } from "./anime-shared";
 import { Response } from "./response";
 
-export interface AnimeInfoResponse extends Response<AnimeInfoData> {}
+export interface AnimeInfoResponse extends Response {
+    data: AnimeInfoData;
+}
 
 export interface AnimeInfoData {
     anime: AnimeInfo;

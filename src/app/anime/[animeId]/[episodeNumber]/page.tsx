@@ -17,14 +17,15 @@ import {
 import Image from "next/image";
 import ShowMoreText from "@/components/show-more-text";
 
-interface AnimeEpisodeProps {
-  params: {
-    animeId: string;
-    episodeNumber: string;
-  };
-}
+type AnimeEpisodePageProps = Promise<{
+  animeId: string;
+  episodeNumber: string;
+}>;
 
-export default async function AnimeEpisodePage({ params }: AnimeEpisodeProps) {
+export default async function AnimeEpisodePage(props: {
+  params: AnimeEpisodePageProps;
+}) {
+  const params = await props.params;
   const [animeResponse, episodesResponse] = await Promise.all([
     fetch(process.env.API_BASE_URL + "/anime/" + params.animeId).then(
       (res) => res.json() as Promise<AnimeInfoResponse>
@@ -55,9 +56,6 @@ export default async function AnimeEpisodePage({ params }: AnimeEpisodeProps) {
   if (!sourceResponse.success || !sourceResponse.data.sources[0]) {
     return <ErrorMessage message="No source available" />;
   }
-
-  console.log(sourceResponse.data);
-
   return (
     <div className="container mx-auto px-4 space-y-6">
       <Breadcrumb>

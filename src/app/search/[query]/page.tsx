@@ -3,21 +3,17 @@ import {
   CardHeader,
   CardTitle,
   CardDescription,
-  CardContent,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Anime, SearchResponse } from "@/types/search-response";
 import Image from "next/image";
 import Link from "next/link";
 
-interface SearchPageProps {
-  params: {
-    query: string;
-  };
-}
+type SearchPageProps = Promise<{ query: string }>;
 
-export default async function SearchPage({ params }: SearchPageProps) {
-  const searchQuery = decodeURIComponent((await params).query);
+export default async function SearchPage(props: { params: SearchPageProps }) {
+  const params = await props.params;
+  const searchQuery = decodeURIComponent(params.query);
   const data = await fetch(
     process.env.API_BASE_URL + "/search?q=" + searchQuery
   );

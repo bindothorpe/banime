@@ -1,6 +1,8 @@
 import {Response} from './response';
 
-export interface ServerResponse extends Response<ServerData> {}
+export interface ServerResponse extends Response {
+    data: ServerData;
+}
 
 export interface ServerData {
     sub: Server[];

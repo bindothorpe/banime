@@ -1,11 +1,4 @@
-import {
-  Calendar,
-  Home,
-  HomeIcon,
-  Inbox,
-  Search,
-  Settings,
-} from "lucide-react";
+import { Calendar, Home, Search, Settings } from "lucide-react";
 
 import {
   Sidebar,
@@ -16,7 +9,6 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-  SidebarRail,
 } from "@/components/ui/sidebar";
 import SidebarSearch from "./sidebar-search";
 

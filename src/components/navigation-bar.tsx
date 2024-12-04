@@ -7,9 +7,7 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "./ui/drawer";
-import { Input } from "./ui/input";
 import Link from "next/link";
-import { CommandShortcut } from "./ui/command";
 import { SearchCommand } from "./search-command";
 
 const navigation = [

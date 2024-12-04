@@ -1,6 +1,8 @@
 import {Response} from './response';
 
-export interface SourceResponse extends Response<SourceData> {}
+export interface SourceResponse extends Response {
+    data: SourceData;
+}
 
 export interface SourceData {
     tracks: Track[];

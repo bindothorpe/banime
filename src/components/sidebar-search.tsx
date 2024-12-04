@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Search } from "lucide-react";
 import { FormEvent, ChangeEvent } from "react";
 import { Input } from "./ui/input";
 

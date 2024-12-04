@@ -29,7 +29,7 @@ export function SearchCommand({ isMobile = false }: { isMobile?: boolean }) {
 
     document.addEventListener("keydown", down);
     return () => document.removeEventListener("keydown", down);
-  }, []);
+  }, [isMobile]);
 
   const handleSearch = (searchQuery: string) => {
     if (!searchQuery.trim()) return;

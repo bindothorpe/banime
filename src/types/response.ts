@@ -1,4 +1,3 @@
-export interface Response<T> {
+export interface Response {
     success: boolean;
-    data: T;
   }

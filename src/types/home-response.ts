@@ -1,7 +1,9 @@
 import { Episodes } from './anime-shared';
 import { Response } from './response';
 
-export interface HomeResponse extends Response<HomeData> {}
+export interface HomeResponse extends Response {
+    data: HomeData;
+}
 
 export interface HomeData {
     spotlightAnimes: RankedAnime[];

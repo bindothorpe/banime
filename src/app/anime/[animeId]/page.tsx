@@ -5,18 +5,15 @@ import { Badge } from "@/components/ui/badge";
 import { AnimeInfoResponse } from "@/types/anime-info-response";
 import { Episode } from "@/types/episode-response";
 
-interface AnimePageProps {
-  params: {
-    animeId: string;
-  };
-}
+type AnimePageProps = Promise<{ animeId: string }>;
 
-export default async function AnimePage({ params }: AnimePageProps) {
+export default async function AnimePage(props: { params: AnimePageProps }) {
+  const params = await props.params;
   const data = await fetch(
-    process.env.API_BASE_URL + "/anime/" + (await params).animeId
+    process.env.API_BASE_URL + "/anime/" + params.animeId
   );
   const episodesData = await fetch(
-    process.env.API_BASE_URL + "/anime/" + (await params).animeId + "/episodes"
+    process.env.API_BASE_URL + "/anime/" + params.animeId + "/episodes"
   );
   const response: AnimeInfoResponse = await data.json();
   const episodesResponse = await episodesData.json();
