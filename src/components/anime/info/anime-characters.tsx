@@ -1,5 +1,5 @@
-import { Card, CardContent } from "../../../components/ui/card";
-import { CharacterVoiceActor } from "../../../types/anime-info-response";
+import { Card, CardContent } from "@/components/ui/card";
+import { CharacterVoiceActor } from "@/types/anime-info-response";
 import Image from "next/image";
 
 interface AnimeCharactersProps {
