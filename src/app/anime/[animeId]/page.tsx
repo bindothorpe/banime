@@ -46,7 +46,7 @@ export default async function AnimePage({ params }: AnimePageProps) {
 
           <div>
             <h2 className="text-xl font-bold mb-2">Episodes</h2>
-            <div className="grid grid-cols-6 gap-2">
+            <div className="grid grid-cols-3 md:grid-cols-6 gap-2">
               {episodesResponse.data.episodes.map((episode: Episode) => (
                 <AnimeEpisodeGridButton
                   key={episode.number}
