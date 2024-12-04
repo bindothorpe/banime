@@ -54,9 +54,9 @@ export default function NavigationBar() {
               <Menu className="h-6 w-6" />
             </Button>
           </DrawerTrigger>
-          <DrawerContent>
+          <DrawerContent className="pb-24">
             <DrawerHeader>
-              <DrawerTitle>Menu</DrawerTitle>
+              <DrawerTitle>Navigation</DrawerTitle>
             </DrawerHeader>
             <div className="flex flex-col space-y-4 px-4">
               {navigation.map((item) => (
