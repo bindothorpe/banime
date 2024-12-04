@@ -94,13 +94,13 @@ export default async function AnimeEpisodePage({ params }: AnimeEpisodeProps) {
           <h2 className="text-2xl font-bold mb-4">
             {animeResponse.data.anime.info.name}
           </h2>
-          <p className="text-gray-400">
+          <div className="text-gray-400">
             <ShowMoreText text={animeResponse.data.anime.info.description} />
-          </p>
+          </div>
         </div>
       </div>
 
-      <section>
+      <section className="pb-16">
         <h3 className="text-xl font-bold mb-4">Episodes</h3>
         <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-2">
           {episodesResponse.data.episodes.map((episode: Episode) => (
