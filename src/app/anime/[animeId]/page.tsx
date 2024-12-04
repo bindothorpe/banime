@@ -1,9 +1,9 @@
-import { AnimeEpisodeGridButton } from "@/components/anime/info/anime-episode-grid-button";
-import { AnimeInfo } from "@/components/anime/info/anime-info";
-import { AnimeTabs } from "@/components/anime/info/anime-tabs";
-import { Badge } from "@/components/ui/badge";
-import { AnimeInfoResponse } from "@/types/anime-info-response";
-import { Episode } from "@/types/episode-response";
+import { AnimeEpisodeGridButton } from "../../../components/anime/info/anime-episode-grid-button";
+import { AnimeInfo } from "../../../components/anime/info/anime-info";
+import { AnimeTabs } from "../../../components/anime/info/anime-tabs";
+import { Badge } from "../../../components/ui/badge";
+import { AnimeInfoResponse } from "../../../types/anime-info-response";
+import { Episode } from "../../../types/episode-response";
 
 type AnimePageProps = Promise<{ animeId: string }>;
 

@@ -1,13 +1,13 @@
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import { Card, CardContent } from "../../../components/ui/card";
+import { Badge } from "../../../components/ui/badge";
 import Image from "next/image";
-import { AnimeInfo as AnimeInfoType } from "@/types/anime-info-response";
+import { AnimeInfo as AnimeInfoType } from "../../../types/anime-info-response";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "@/components/ui/accordion";
+} from "../../../components/ui/accordion";
 
 interface AnimeInfoProps {
   anime: AnimeInfoType;

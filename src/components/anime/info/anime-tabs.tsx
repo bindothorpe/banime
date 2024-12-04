@@ -1,5 +1,10 @@
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { AnimeInfoData } from "@/types/anime-info-response";
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "../../../components/ui/tabs";
+import { AnimeInfoData } from "../../../types/anime-info-response";
 import { AnimeCharacters } from "./anime-characters";
 import { AnimeGridCard } from "./anime-grid-card";
 
