@@ -1,7 +1,7 @@
 import { AnimeInfoData } from "@/types/anime-info-response";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@radix-ui/react-tabs";
 import { AnimeCharacters } from "./anime-characters";
 import { AnimeGridCard } from "./anime-grid-card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 interface AnimeTabsProps {
   data: AnimeInfoData;

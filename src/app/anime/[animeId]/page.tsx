@@ -36,7 +36,7 @@ export default async function AnimePage(props: { params: AnimePageProps }) {
                 {response.data.anime.info.stats.quality}
               </Badge>
             </div>
-            <p className="text-gray-600">
+            <p className="text-gray-500">
               {response.data.anime.info.description}
             </p>
           </div>
