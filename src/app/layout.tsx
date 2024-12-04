@@ -20,7 +20,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           <div className="flex flex-col min-h-screen">
             <NavigationBar />
             {/* Main content */}
-            <main className="flex-1 mt-4">{children}</main>
+            <main className="flex-1 pt-20">
+              <div className="container mx-auto px-4 max-w-7xl">{children}</div>
+            </main>
           </div>
         </ThemeProvider>
       </body>

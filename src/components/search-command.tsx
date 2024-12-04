@@ -1,21 +1,22 @@
 "use client";
 
 import React from "react";
+import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import {
   Command,
   CommandDialog,
   CommandEmpty,
-  CommandGroup,
   CommandInput,
-  CommandItem,
   CommandList,
 } from "@/components/ui/command";
-import { DialogTitle } from "@/components/ui/dialog";
+import { DialogDescription, DialogTitle } from "@/components/ui/dialog";
 import { Search } from "lucide-react";
 
 export function SearchCommand({ isMobile = false }: { isMobile?: boolean }) {
+  const router = useRouter();
   const [open, setOpen] = React.useState(false);
+  const [query, setQuery] = React.useState("");
 
   React.useEffect(() => {
     const down = (e: KeyboardEvent) => {
@@ -30,12 +31,18 @@ export function SearchCommand({ isMobile = false }: { isMobile?: boolean }) {
     return () => document.removeEventListener("keydown", down);
   }, []);
 
+  const handleSearch = (searchQuery: string) => {
+    if (!searchQuery.trim()) return;
+    router.push(`/search/${encodeURIComponent(searchQuery.trim())}`);
+    setOpen(false);
+  };
+
   return (
     <>
       <Button
         variant="outline"
         className={`justify-between text-muted-foreground text-sm font-normal ${
-          isMobile ? "flex-1 mx-4" : "w-full"
+          isMobile ? "flex-1 mx-4" : "w-full pr-2"
         }`}
         onClick={() => setOpen(true)}
       >
@@ -51,15 +58,22 @@ export function SearchCommand({ isMobile = false }: { isMobile?: boolean }) {
       </Button>
       <CommandDialog open={open} onOpenChange={setOpen}>
         <DialogTitle className="sr-only">Search</DialogTitle>
+        <DialogDescription className="sr-only">
+          Search for anime titles
+        </DialogDescription>
         <Command>
-          <CommandInput placeholder="Search anime..." />
+          <CommandInput
+            placeholder="Search anime..."
+            value={query}
+            onValueChange={setQuery}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                handleSearch(query);
+              }
+            }}
+          />
           <CommandList>
-            <CommandEmpty>No results found.</CommandEmpty>
-            <CommandGroup heading="Suggestions">
-              <CommandItem>Calendar</CommandItem>
-              <CommandItem>Search Emojis</CommandItem>
-              <CommandItem>Launch</CommandItem>
-            </CommandGroup>
+            <CommandEmpty>Press enter to search</CommandEmpty>
           </CommandList>
         </Command>
       </CommandDialog>

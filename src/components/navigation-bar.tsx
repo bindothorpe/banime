@@ -22,7 +22,7 @@ export default function NavigationBar() {
   return (
     <>
       {/* Desktop Navigation */}
-      <nav className="hidden md:flex items-center justify-between p-4 border-b fixed top-0 left-0 right-0 bg-background z-50">
+      <nav className="hidden md:flex items-center justify-between px-4 py-2 border-b fixed top-0 left-0 right-0 bg-background z-50">
         <div className="flex items-center space-x-6">
           <Link href="/" className="text-xl font-bold">
             BANIME
@@ -37,9 +37,9 @@ export default function NavigationBar() {
             </Link>
           ))}
         </div>
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center space-x-2">
           <SearchCommand />
-          <Button variant="ghost" size="icon">
+          <Button variant="ghost" size="icon" className="px-4">
             <span className="sr-only">Toggle theme</span>
             <Sun className="h-12 w-12" />
           </Button>
