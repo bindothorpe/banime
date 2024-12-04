@@ -9,14 +9,17 @@ interface AnimeTabsProps {
 
 export function AnimeTabs({ data }: AnimeTabsProps) {
   return (
-    <Tabs defaultValue="characters" className="w-full">
+    <Tabs
+      defaultValue={data.seasons.length > 0 ? "seasons" : "related"}
+      className="w-full"
+    >
       <TabsList>
-        <TabsTrigger value="characters">Characters</TabsTrigger>
-        <TabsTrigger value="related">Related</TabsTrigger>
-        <TabsTrigger value="recommended">Recommended</TabsTrigger>
         {data.seasons.length > 0 && (
           <TabsTrigger value="seasons">Seasons</TabsTrigger>
         )}
+        <TabsTrigger value="related">Related</TabsTrigger>
+        <TabsTrigger value="characters">Characters</TabsTrigger>
+        <TabsTrigger value="recommended">Recommended</TabsTrigger>
       </TabsList>
 
       <TabsContent value="characters" className="mt-4">
