@@ -50,7 +50,7 @@ export default function NavigationBar() {
               <Menu className="h-6 w-6" />
             </Button>
           </DrawerTrigger>
-          <DrawerContent className="pb-24">
+          <DrawerContent className="pb-24 bg-background/80 backdrop-blur-sm supports-[backdrop-filter]:bg-background/80">
             <DrawerHeader>
               <DrawerTitle>Navigation</DrawerTitle>
             </DrawerHeader>
