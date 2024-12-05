@@ -21,7 +21,7 @@ export default function NavigationBar() {
   return (
     <>
       {/* Desktop Navigation */}
-      <nav className="hidden md:flex items-center justify-between px-4 py-2 border-b fixed top-0 left-0 right-0 bg-background z-50">
+      <nav className="hidden md:flex items-center justify-between px-4 py-2 border-b fixed top-0 left-0 right-0 bg-background/80 backdrop-blur-sm supports-[backdrop-filter]:bg-background/80 z-50">
         <div className="flex items-center space-x-6">
           <Link href="/" className="text-xl font-bold">
             BANIME
@@ -43,7 +43,7 @@ export default function NavigationBar() {
       </nav>
 
       {/* Mobile Navigation */}
-      <nav className="md:hidden flex items-center justify-between p-4 border-b fixed top-0 left-0 right-0 bg-background z-50">
+      <nav className="md:hidden flex items-center justify-between p-4 border-b fixed top-0 left-0 right-0 bg-background/80 backdrop-blur-sm supports-[backdrop-filter]:bg-background/80 z-50">
         <Drawer>
           <DrawerTrigger asChild>
             <Button variant="ghost" size="icon">
