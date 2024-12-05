@@ -9,7 +9,7 @@ import {
   CommandEmpty,
   CommandInput,
   CommandList,
-} from "@/components/ui/command";
+} from "@/components/custom-ui/command";
 import { DialogDescription, DialogTitle } from "@/components/custom-ui/dialog";
 import { Search } from "lucide-react";
 

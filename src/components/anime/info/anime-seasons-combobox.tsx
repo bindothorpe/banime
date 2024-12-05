@@ -12,7 +12,7 @@ import {
   CommandGroup,
   CommandItem,
   CommandList,
-} from "@/components/ui/command";
+} from "@/components/custom-ui/command";
 import {
   Popover,
   PopoverContent,
