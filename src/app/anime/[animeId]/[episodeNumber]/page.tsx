@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/breadcrumb";
 import Image from "next/image";
 import ShowMoreText from "@/components/show-more-text";
+import { AnimeEpisodeGridButton } from "@/components/anime/info/anime-episode-grid-button";
 
 type AnimeEpisodePageProps = Promise<{
   animeId: string;
@@ -122,17 +123,13 @@ export default async function AnimeEpisodePage(props: {
         <h3 className="text-xl font-bold mb-4">Episodes</h3>
         <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-2">
           {episodesResponse.data.episodes.map((episode: Episode) => (
-            <Button
+            <AnimeEpisodeGridButton
               key={episode.number}
-              variant={
-                episode.number === currentEpisode.number
-                  ? "secondary"
-                  : "outline"
-              }
-              className="w-full h-12"
-            >
-              {episode.number}
-            </Button>
+              animeId={animeResponse.data.anime.info.id}
+              number={episode.number}
+              isCurrent={false}
+              isWatched={false}
+            />
           ))}
         </div>
       </section>

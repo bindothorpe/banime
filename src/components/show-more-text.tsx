@@ -11,7 +11,7 @@ interface ShowMoreTextProps {
 
 export default function ShowMoreText({
   text,
-  maxLines = 3,
+  maxLines = 2,
   readMoreText = "Show more",
   readLessText = "Show less",
 }: ShowMoreTextProps) {
