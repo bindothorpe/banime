@@ -13,6 +13,7 @@ interface VideoPlayerProps {
   sourceData?: SourceData;
   getInstance?: (art: Artplayer) => void;
   className?: string;
+  controlsZIndex?: number; // New prop for controls z-index
 }
 
 interface Level {
@@ -28,6 +29,7 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
   sourceData,
   getInstance,
   className,
+  controlsZIndex = 25, // Default z-index value
 }) => {
   const artRef = useRef<Artplayer>();
   const containerRef = useRef<HTMLDivElement>(null);
@@ -118,6 +120,27 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
       ...option,
     });
 
+    // Apply custom z-index to controls after initialization
+    const controls = art.template.$player;
+    if (controls) {
+      controls.style.zIndex = controlsZIndex.toString();
+    }
+
+    // Add CSS to ensure controls are properly layered
+    const style = document.createElement("style");
+    style.textContent = `
+      .art-video-player .art-controls {
+        z-index: ${controlsZIndex} !important;
+      }
+      .art-video-player .art-bottom {
+        z-index: ${controlsZIndex + 1} !important;
+      }
+      .art-video-player .art-settings {
+        z-index: ${controlsZIndex + 2} !important;
+      }
+    `;
+    document.head.appendChild(style);
+
     artRef.current = art;
     getInstance?.(art);
 
@@ -126,8 +149,10 @@ const VideoPlayer: React.FC<VideoPlayerProps> = ({
         artRef.current.destroy();
         artRef.current = undefined;
       }
+      // Clean up added style
+      style.remove();
     };
-  }, [option, getInstance, sourceData]);
+  }, [option, getInstance, sourceData, controlsZIndex]);
 
   return <div ref={containerRef} className={className} />;
 };
