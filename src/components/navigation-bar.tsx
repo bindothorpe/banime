@@ -1,4 +1,4 @@
-import { Menu, Sun } from "lucide-react";
+import { Menu } from "lucide-react";
 import { Button } from "./ui/button";
 import {
   Drawer,
@@ -9,6 +9,7 @@ import {
 } from "./ui/drawer";
 import Link from "next/link";
 import { SearchCommand } from "./search-command";
+import ThemeButton from "./theme-button";
 
 const navigation = [
   { name: "Home", href: "/" },
@@ -37,10 +38,7 @@ export default function NavigationBar() {
         </div>
         <div className="flex items-center space-x-2">
           <SearchCommand />
-          <Button variant="ghost" size="icon" className="px-4">
-            <span className="sr-only">Toggle theme</span>
-            <Sun className="h-12 w-12" />
-          </Button>
+          <ThemeButton />
         </div>
       </nav>
 
@@ -70,10 +68,7 @@ export default function NavigationBar() {
           </DrawerContent>
         </Drawer>
         <SearchCommand isMobile />
-        <Button variant="ghost" size="icon">
-          <span className="sr-only">Toggle theme</span>
-          <Sun className="h-8 w-8" />
-        </Button>
+        <ThemeButton />
       </nav>
     </>
   );
