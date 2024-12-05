@@ -59,7 +59,7 @@ export function SearchCommand({ isMobile = false }: { isMobile?: boolean }) {
       <CommandDialog
         open={open}
         onOpenChange={setOpen}
-        className="bg-popover/90 backdrop-blur-sm supports-[backdrop-filter]:bg-popover/90"
+        className="dark:bg-popover/90 backdrop-blur-sm dark:supports-[backdrop-filter]:bg-popover/90 bg-popover/80 supports-[backdrop-filter]:bg-popover/80"
       >
         <DialogTitle className="sr-only">Search</DialogTitle>
         <DialogDescription className="sr-only">
