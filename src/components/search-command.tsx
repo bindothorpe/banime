@@ -10,7 +10,7 @@ import {
   CommandInput,
   CommandList,
 } from "@/components/ui/command";
-import { DialogDescription, DialogTitle } from "@/components/ui/dialog";
+import { DialogDescription, DialogTitle } from "@/components/custom-ui/dialog";
 import { Search } from "lucide-react";
 
 export function SearchCommand({ isMobile = false }: { isMobile?: boolean }) {
