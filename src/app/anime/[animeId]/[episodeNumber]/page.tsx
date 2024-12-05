@@ -1,5 +1,4 @@
 import React from "react";
-import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { AnimeInfoResponse } from "@/types/anime-info-response";
 import { Episode, EpisodesResponse } from "@/types/episode-response";
