@@ -15,7 +15,8 @@ import {
 } from "@/components/ui/breadcrumb";
 import Image from "next/image";
 import ShowMoreText from "@/components/show-more-text";
-import { AnimeEpisodeGridButton } from "@/components/anime/info/anime-episode-grid-button";
+import AnimeSeasonsCombobox from "@/components/anime/info/anime-seasons-combobox";
+import { Separator } from "@/components/ui/separator";
 
 type AnimeEpisodePageProps = Promise<{
   animeId: string;
@@ -34,6 +35,16 @@ export default async function AnimeEpisodePage(props: {
       process.env.API_BASE_URL + "/anime/" + params.animeId + "/episodes"
     ).then((res) => res.json() as Promise<EpisodesResponse>),
   ]);
+
+  async function getEpisodes(seasonId: string) {
+    "use server";
+
+    const episodesResponse = await fetch(
+      `${process.env.API_BASE_URL}/anime/${seasonId}/episodes`
+    ).then((res) => res.json() as Promise<EpisodesResponse>);
+
+    return episodesResponse.data.episodes;
+  }
 
   const currentEpisode = episodesResponse.data.episodes.find(
     (episode: Episode) => episode.number === parseInt(params.episodeNumber)
@@ -58,8 +69,8 @@ export default async function AnimeEpisodePage(props: {
   }
 
   return (
-    <div className="container mx-auto px-4 space-y-6">
-      <Breadcrumb>
+    <div className="container mx-auto px-4">
+      <Breadcrumb className="mb-4">
         <BreadcrumbList>
           <BreadcrumbItem>
             <BreadcrumbLink href={`/anime/${animeResponse.data.anime.info.id}`}>
@@ -73,7 +84,7 @@ export default async function AnimeEpisodePage(props: {
         </BreadcrumbList>
       </Breadcrumb>
 
-      <div className="aspect-video w-full rounded-lg overflow-hidden">
+      <div className="aspect-video w-full rounded-lg overflow-hidden mb-8">
         <VideoPlayer
           option={{
             url: sourceResponse.data.sources[0].url,
@@ -97,8 +108,8 @@ export default async function AnimeEpisodePage(props: {
         />
       </div>
 
-      <div className="grid grid-cols-4 gap-4">
-        <div className="hidden md:block relative aspect-[3/4] w-full mb-8">
+      <div className="grid grid-cols-4 gap-4 mb-8">
+        <div className="hidden md:block relative aspect-[3/4] w-full">
           <Image
             src={animeResponse.data.anime.info.poster}
             alt={animeResponse.data.anime.info.name}
@@ -118,19 +129,15 @@ export default async function AnimeEpisodePage(props: {
         </div>
       </div>
 
+      <Separator className="mb-8" />
+
       <section className="pb-16">
-        <h3 className="text-xl font-bold mb-4">Episodes</h3>
-        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-2">
-          {episodesResponse.data.episodes.map((episode: Episode) => (
-            <AnimeEpisodeGridButton
-              key={episode.number}
-              animeId={animeResponse.data.anime.info.id}
-              number={episode.number}
-              isCurrent={false}
-              isWatched={false}
-            />
-          ))}
-        </div>
+        <AnimeSeasonsCombobox
+          animeResponse={animeResponse}
+          episodesResponse={episodesResponse}
+          initialEpisodes={episodesResponse.data.episodes}
+          onSeasonChange={getEpisodes}
+        />
       </section>
     </div>
   );
