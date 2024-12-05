@@ -56,13 +56,18 @@ export function SearchCommand({ isMobile = false }: { isMobile?: boolean }) {
           </kbd>
         )}
       </Button>
-      <CommandDialog open={open} onOpenChange={setOpen}>
+      <CommandDialog
+        open={open}
+        onOpenChange={setOpen}
+        className="bg-popover/60 backdrop-blur-sm supports-[backdrop-filter]:bg-popover/60"
+      >
         <DialogTitle className="sr-only">Search</DialogTitle>
         <DialogDescription className="sr-only">
           Search for anime titles
         </DialogDescription>
-        <Command>
+        <Command className="bg-transparent">
           <CommandInput
+            className="bg-transparent"
             placeholder="Search anime..."
             value={query}
             onValueChange={setQuery}
@@ -72,7 +77,7 @@ export function SearchCommand({ isMobile = false }: { isMobile?: boolean }) {
               }
             }}
           />
-          <CommandList>
+          <CommandList className="bg-transparent">
             <CommandEmpty>Press enter to search</CommandEmpty>
           </CommandList>
         </Command>
